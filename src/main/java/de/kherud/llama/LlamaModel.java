@@ -115,6 +115,15 @@ public class LlamaModel implements AutoCloseable {
 	 */
 	public static native void setLogger(LogFormat format, @Nullable BiConsumer<LogLevel, String> callback);
 
+	/**
+	 * Get the metadata of the model.
+	 *
+	 * @return a map of the model's metadata
+	 */
+	public Map<String, String> getMetadata() {
+		return getMetadataNative();
+	}
+
 	@Override
 	public void close() {
 		delete();
@@ -134,6 +143,8 @@ public class LlamaModel implements AutoCloseable {
 	private native void delete();
 	
 	native void releaseTask(int taskId);
+
+	private native Map<String, String> getMetadataNative();
 
 	private static native byte[] jsonSchemaToGrammarBytes(String schema);
 	

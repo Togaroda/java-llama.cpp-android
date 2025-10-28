@@ -188,6 +188,12 @@ public class LlamaModelTest {
 		Assert.assertEquals(" " +prompt, decoded);
 	}
 
+	@Test
+	public void testGetMetadata() {
+		Map<String, String> metadata = model.getMetadata();
+		Assert.assertFalse(metadata.isEmpty());
+	}
+
 	@Ignore
 	public void testLogText() {
 		List<LogMessage> messages = new ArrayList<>();

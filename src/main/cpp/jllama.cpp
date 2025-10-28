@@ -851,3 +851,26 @@ JNIEXPORT jbyteArray JNICALL Java_de_kherud_llama_LlamaModel_jsonSchemaToGrammar
     const std::string c_grammar = json_schema_to_grammar(c_schema_json);
     return parse_jbytes(env, c_grammar);
 }
+
+JNIEXPORT jobject JNICALL Java_de_kherud_llama_LlamaModel_getMetadataNative(JNIEnv *env, jobject obj) {
+    jlong server_handle = env->GetLongField(obj, f_model_pointer);
+    auto *ctx_server = reinterpret_cast<server_context *>(server_handle);
+
+    jobject jmap = env->NewObject(c_hash_map, cc_hash_map);
+    if (jmap == nullptr) {
+        return nullptr;
+    }
+
+    const auto model_meta = ctx_server->model_meta();
+
+    for (auto it = model_meta.begin(); it != model_meta.end(); ++it) {
+        jstring jkey = env->NewStringUTF(it.key().c_str());
+        std::string value_str = it.value().dump();
+        jstring jvalue = env->NewStringUTF(value_str.c_str());
+        env->CallObjectMethod(jmap, m_map_put, jkey, jvalue);
+        env->DeleteLocalRef(jkey);
+        env->DeleteLocalRef(jvalue);
+    }
+
+    return jmap;
+}
