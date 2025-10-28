@@ -19,6 +19,10 @@ Inference of Meta's LLaMA model (and others) in pure C/C++.
 > [!NOTE]
 > Now with support for Gemma 3
 
+## Download
+
+[![](https://img.shields.io/badge/download-class.jar-blue)](dist/llama-4.2.0.jar)
+
 ## Quick Start
 
 Access this library via Maven:
@@ -37,7 +41,7 @@ There are multiple [examples](src/test/java/examples).
 
 We support CPU inference for the following platforms out of the box:
 
-- Linux x86-64, aarch64
+- Linux x86-64, aarch64, Arm64-v8a (Android mobiles)
 - MacOS x86-64, aarch64 (M-series)
 - Windows x86-64, x64
 
