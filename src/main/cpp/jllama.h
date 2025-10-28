@@ -98,13 +98,6 @@ JNIEXPORT jobject JNICALL Java_de_kherud_llama_LlamaModel_rerank(JNIEnv *, jobje
  */
 JNIEXPORT jstring JNICALL Java_de_kherud_llama_LlamaModel_applyTemplate(JNIEnv *, jobject, jstring);
 
-/*
- * Class:     de_kherud_llama_LlamaModel
- * Method:    getMetadataNative
- * Signature: ()Ljava/util/Map;
- */
-JNIEXPORT jobject JNICALL Java_de_kherud_llama_LlamaModel_getMetadataNative(JNIEnv *, jobject);
-
 #ifdef __cplusplus
 }
 #endif
